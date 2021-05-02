@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web01-app
+  labels:
+    app: web01-nginx
+spec:
+  containers:
+    - name: mynginx
+      image: abhisheknemafree/mynginx:v1-release

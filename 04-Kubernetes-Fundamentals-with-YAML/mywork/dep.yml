@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web01-deploy
+  labels:
+    app: web01-nginx
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: web01-nginx
+  template:
+    metadata:
+      name: web01
+      labels:
+        app: web01-nginx
+    spec:
+      containers:
+        - name: mynginx
+          image: abhisheknemafree/mynginx:v2-release

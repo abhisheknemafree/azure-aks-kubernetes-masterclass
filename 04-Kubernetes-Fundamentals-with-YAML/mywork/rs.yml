@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: web01-rs
+  labels:
+    app: web01-nginx    
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: web01-nginx 
+  template:
+    metadata:
+      name: web01-app
+      labels:
+        app: web01-nginx
+    spec:
+      containers:
+        - name: mynginx
+          image: abhisheknemafree/mynginx:v2-release
