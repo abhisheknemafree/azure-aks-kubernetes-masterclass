@@ -17,4 +17,4 @@ spec:
     spec:
       containers:
         - name: mynginx
-          image: abhisheknemafree/mynginx:v2-release
+          image: abhisheknemafree/mynginx:v1-release
