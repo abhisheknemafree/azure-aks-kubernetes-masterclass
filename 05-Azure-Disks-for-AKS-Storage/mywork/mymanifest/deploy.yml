@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deploy
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: mysqlPod
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysqlcontainer
+          image: mysql:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: dbpassword11
+          ports:
+            - name: mysql
+              containerPort: 3306
+          volumeMounts:
+            - name: mysql-persistant-storage
+              mountPath: /var/lib/mysql
+            - name: usermanagemet-dbcreation-script
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: mysql-persistant-storage
+          persistentVolumeClaim: 
+            claimName: azure-managed-disk-pvc
+        - name: usermanagemet-dbcreation-script
+          configMap:
+            name: usermanagemet-dbcreation-script
