@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+  labels:
+    app: nginx-deploy
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nginx-app 
+  template:
+    metadata:
+      name: nginx-app-pod
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+        - name: nginx-ctr
+          image: stacksimplify/kube-nginxapp1:1.0.0
+          ports:
+            - containerPort: 80
+      #     volumeMounts:
+      #       - name: azurefile-vol
+      #         mountPath: "/usr/share/nginx/html/app1"
+      # volumes:
+      #   - name: azurefile-vol
+      #     persistentVolumeClaim:
+      #       claimName: azurefile-sc-pvc 

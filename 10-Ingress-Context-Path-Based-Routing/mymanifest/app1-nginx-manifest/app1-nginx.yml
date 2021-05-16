@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1-nginx-deploy
+  labels:
+    app: app1-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app1-nginx 
+  template:
+    metadata:
+      name: app1-nginx
+      labels:
+        app: app1-nginx
+    spec:
+      containers:
+        - name: app1-nginx-ctr
+          image: stacksimplify/kube-nginxapp1:1.0.0
+          ports:
+            - containerPort: 80
+             
