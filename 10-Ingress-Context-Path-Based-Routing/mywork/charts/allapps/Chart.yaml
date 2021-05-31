@@ -1,0 +1,9 @@
+apiVersion: v2
+name: allapps
+description: A Helm chart for allapps
+
+type: application
+
+version: 0.1.0
+
+appVersion: "0.1.0"
